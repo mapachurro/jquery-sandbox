@@ -108,13 +108,18 @@
 
   <script type="text/javascript">
 
-    var num1 = "#first-number";
-    var operator = "#operator";
-    var num2 = "#second-number";
-    var value;
-  
+
 
     $(document).ready(function () {
+
+      var num1 = "#first-number";
+      var num1Value = "";
+      var operator = "#operator";
+      var num2 = "#second-number";
+      var num2Value = "";
+      var result = "#result";
+      var operatorValue;
+  
       //Check to see if there's an operator present
       var opSelected = false;
       $(".operator").on("click", function () {
@@ -124,29 +129,37 @@
       $(".number").on("click", function () {
         if (opSelected === true) {
           $(num2).append($(this).val());
+          num2Value + = $(this).val();
         }
       //If it's not present, go to the first number field
         else {
           $(num1).append($(this).val());
+          num1Value += $(this).val();
         }});
 
       $(".operator").on("click", function () {
         $(operator).text($(this).val());
+        operatorValue = $(this).val();
+
       })
       // Your code here...
 
       
       
-      $("#equal").on("click", function(){
-        
-          send1 = $("#first-number");
-          send2 = $("#second-number");
+      $("#button-equal").on("click", function(){
+          console.log(this.value);
+          var send1 = parseInt(num1Value);
+          var send2 = parseInt(num2Value);
 
-        if("#operator" == "+"){
-          var result = send1+send2;
-          console.log(send1+send2);
-          $("#result").text(result);
+      if (operatorValue === "+") {
+        var compute = send1 + send2;
+        console.log(send1 + send2 + "Line 152");
+        $("#result").text(compute);
       };
+
+       
+
+          
     
 
 
